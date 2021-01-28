@@ -12,9 +12,23 @@
       let canvas;
       let canvasContext;
       let ballX = 50;
-      let ballY = 50
+      let ballY = 50;
       let ballSpeedX = 10;
-      let ballSpeedY = 4
+      let ballSpeedY = 4;
+
+      let paddle1Y = 250;
+      const paddleHeight = 100;
+
+      function calculateMousePos(evt) {
+        let rect = canvas.getBoundingClientRect();
+        let root = document.documentElement;
+        let mouseX = evt.clientX - rect.left - root.scrollLeft;
+        let mouseY = evt.clientY - rect.top - root.scrollTop;
+        return {
+          x: mouseX,
+          y: mouseY
+        };
+      }
 
       window.onload = function () {
         canvas = document.getElementById("gameCanvas");
@@ -25,11 +39,16 @@
           moveEverything();
           drawEverything();
         }, 1000 / framesPerSecond);
+
+        canvas.addEventListener('mousemove', function (evt) {
+          let mousePos = calculateMousePos(evt);
+          paddle1Y = mousePos.y;
+        });
       };
 
       function moveEverything() {
         ballX = ballX + ballSpeedX;
-        ballY = ballY + ballSpeedY
+        ballY = ballY + ballSpeedY;
         if (ballX < 0) {
           ballSpeedX = -ballSpeedX;
         }
@@ -48,7 +67,7 @@
         colorRect(0, 0, canvas.width, canvas.height, "black");
 
         // this is left player paddle
-        colorRect(0, 210, 10, 100, "white");
+        colorRect(0, paddle1Y, 10, 100, "white");
 
         // next line draws the ball
         colorCircle(ballX, ballY, 10, "white");
