@@ -7,6 +7,9 @@ let ballSpeedY = 4;
 
 let player1Score = 0;
 let player2Score = 0;
+const winningScore = 3;
+
+let showingWinScreen = false;
 
 let paddle1Y = 250;
 let paddle2Y = 250;
@@ -23,7 +26,13 @@ function calculateMousePos(evt) {
     y: mouseY,
   };
 }
-
+function handleMouseClick(evt) {
+  if (showingWinScreen) {
+    player1Score = 0;
+    player2Score = 0;
+    showingWinScreen = false;
+  }
+}
 window.onload = function () {
   canvas = document.getElementById("gameCanvas");
   canvasContext = canvas.getContext("2d");
@@ -34,6 +43,7 @@ window.onload = function () {
     drawEverything();
   }, 1000 / framesPerSecond);
 
+  canvas.addEventListener("mousedown", handleMouseClick);
   canvas.addEventListener("mousemove", function (evt) {
     let mousePos = calculateMousePos(evt);
     paddle1Y = mousePos.y - paddleHeight / 2;
@@ -41,6 +51,11 @@ window.onload = function () {
 };
 
 function ballReset() {
+  if (player1Score >= winningScore || player2Score >= winningScore) {
+    player1Score = 0;
+    player2Score = 0;
+    showingWinScreen = true;
+  }
   ballSpeedX = -ballSpeedX;
   ballX = canvas.width / 2;
   ballY = canvas.height / 2;
@@ -56,6 +71,9 @@ function computerMovement() {
 }
 
 function moveEverything() {
+  if (showingWinScreen) {
+    return;
+  }
   computerMovement();
   ballX += ballSpeedX;
   ballY += ballSpeedY;
@@ -65,8 +83,8 @@ function moveEverything() {
       let deltaY = ballY - (paddle1Y + paddleHeight / 2);
       ballspeedY = deltaY * 0.35;
     } else {
-      ballReset();
       player2Score++;
+      ballReset();
     }
   }
   if (ballX > canvas.width) {
@@ -75,8 +93,8 @@ function moveEverything() {
       let deltaY = ballY - (paddle2Y + paddleHeight / 2);
       ballspeedY = deltaY * 0.35;
     } else {
-      ballReset();
       player1Score++;
+      ballReset();
     }
   }
   if (ballY < 0) {
@@ -89,6 +107,12 @@ function moveEverything() {
 function drawEverything() {
   // blanks out screen with black
   colorRect(0, 0, canvas.width, canvas.height, "black");
+  if (showingWinScreen) {
+    canvasContext.fillStyle = "white";
+    canvasContext.fillText("click to continue", 100, 100);
+
+    return;
+  }
 
   // this is left player paddle
   colorRect(0, paddle1Y, paddleThickness, paddleHeight, "white");
