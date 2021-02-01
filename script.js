@@ -104,15 +104,29 @@ function moveEverything() {
     ballSpeedY = -ballSpeedY;
   }
 }
+
+function drawNet() {
+  for (let i = 0; i < canvas.height; i+= 40) {
+    colorRect(canvas.width / 2 -1, i, 2, 20, "white");
+    
+  }
+}
+
 function drawEverything() {
   // blanks out screen with black
   colorRect(0, 0, canvas.width, canvas.height, "black");
   if (showingWinScreen) {
     canvasContext.fillStyle = "white";
-    canvasContext.fillText("click to continue", 100, 100);
+    if (player1Score >= winningScore) {
+      canvasContext.fillText("Left Player Won!", 400, 500);
+    } else if (player2Score >= winningScore) {
+      canvasContext.fillText("Right Player Won!", 350, 500);
+    }
+    canvasContext.fillText("click to continue", 350, 200);
 
     return;
   }
+  drawNet();
 
   // this is left player paddle
   colorRect(0, paddle1Y, paddleThickness, paddleHeight, "white");
