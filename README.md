@@ -1,1 +1,1 @@
-Classic arcade game made with HTML and JavaScript 
+Classic arcade game made with HTML and JS
