@@ -6,4 +6,3 @@ Fork and clone this repo, then:
 
 Open index.html
 
-Have fun for hours
