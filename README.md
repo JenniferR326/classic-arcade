@@ -1,8 +1,5 @@
-A classic arcade game made with HTML and JavaScript
+## A classic arcade game made with HTML and Vanilla JavaScript
 
-Installation
+Play [here]("https://jenniferr326.github.io/classic-arcade/")
 
-Fork and clone this repo, then:
-
-Open index.html
 
