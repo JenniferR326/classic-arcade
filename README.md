@@ -8,12 +8,19 @@ This is a simple implementation of the classic Pong game using JavaScript and HT
 # Features
 
 Two paddles controlled by the user and the computer.
+
 The ball bounces between the paddles.
+
 Scoring for both players with a win condition.
+
 A net drawn in the middle of the game area.
-Prerequisites
+
+# Prerequisites
+
 A modern web browser that supports HTML5 Canvas.
-Getting Started
+
+# Getting Started
+
 Clone or download this repository to your local machine.
 
 Open the index.html file in your web browser to start the game.
