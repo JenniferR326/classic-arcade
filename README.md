@@ -1,4 +1,4 @@
-# Play [here](https://jenniferr326.github.io/classic-arcade/)
+# Try it [here](https://jenniferr326.github.io/classic-arcade/)
 
 # Ping Pong Game - JavaScript Canvas
 
