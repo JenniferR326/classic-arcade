@@ -1,5 +1,3 @@
-# Try it [here](https://jenniferr326.github.io/classic-arcade/)
-
 # Ping Pong Game - JavaScript Canvas
 
 This is a simple implementation of the classic Pong game using JavaScript and HTML5 Canvas. The game features two paddles, a ball, and keeps track of player scores.
